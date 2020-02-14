@@ -162,8 +162,11 @@ public class World {
 	 * @param color - the color of the fish.
 	 * @return the new fish itself.
 	 */
+	
+	boolean fast;
+	
 	public Fish insertFishRandomly(int color) {
-		Fish f = new Fish(color, this);
+		Fish f = new Fish(color, this, fast);
 		insertRandomly(f);
 		return f;
 	}
@@ -204,7 +207,9 @@ public class World {
 		List<WorldObject> inSpot = this.find(x, y);
 		
 		for (WorldObject it : inSpot) {
-			// TODO(FishGrid): Don't let us move over rocks as a Fish.
+			if (it instanceof Rock) {
+				return false;
+			}
 			// The other fish shouldn't step "on" the player, the player should step on the other fish.
 			if (it instanceof Snail) {
 				// This if-statement doesn't let anyone step on the Snail.

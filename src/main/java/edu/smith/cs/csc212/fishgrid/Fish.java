@@ -18,8 +18,11 @@ public class Fish extends WorldObject {
 	static Color[] COLORS = {
 			Color.red,
 			Color.green,
-			Color.yellow
-			// TODO: (lab) Add more colors.
+			Color.yellow,
+			Color.blue,
+			Color.cyan,
+			Color.magenta,
+			Color.white
 			// TODO: (FishGrid) Maybe make a special fish that is more points?
 	};
 	/**
@@ -34,6 +37,10 @@ public class Fish extends WorldObject {
 	/**
 	 * Called only on the Fish that is the player!
 	 */
+	
+	boolean fast;
+	//this determines whether the fish is fast 
+	
 	public void markAsPlayer() {
 		this.player = true;
 	}
@@ -44,8 +51,9 @@ public class Fish extends WorldObject {
 	 * @param color Color by number.
 	 * @param world The world itself.
 	 */
-	public Fish(int color, World world) {
+	public Fish(int color, World world, boolean fast) {
 		super(world);
+		this.fast = fast;
 		this.color = color;
 	}
 	
