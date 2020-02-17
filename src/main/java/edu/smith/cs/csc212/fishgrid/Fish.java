@@ -22,8 +22,9 @@ public class Fish extends WorldObject {
 			Color.blue,
 			Color.cyan,
 			Color.magenta,
-			Color.white
-			// TODO: (FishGrid) Maybe make a special fish that is more points?
+			Color.white,
+			Color.pink
+			//the pink fish has more points 
 	};
 	/**
 	 * This is an index into the {@link #COLORS} array.

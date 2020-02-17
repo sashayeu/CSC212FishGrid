@@ -238,14 +238,28 @@ public class World {
 	 * @param followers a set of objects to follow the leader.
 	 */
 	public static void objectsFollow(WorldObject target, List<? extends WorldObject> followers) {
-		// TODO(FishGrid) Comment this method!
 		// Q1. What is recentPositions?
+		//Recent positions is a double ended queue where you can remove from the start and end.
+		//this has the recent positions of the player fish. once the list gets too long, it starts removing a value from
+		//the end and adds to the beginning
+		
 		// Q2. What is followers?
+		//followers is a list of the objects that follow the player, in this case it is the fish that have been stepped on by the player
+	
 		// Q3. What is target?
+		//target is a WorldObject that the objects in the list followers follow. in this case, it is the player that will be the target
+		
 		// Q4. Why is past = putWhere[i+1]? Why not putWhere[i]?
+		// this is because putWhere is a list of recent positions, and the ith position will already have an object at that 
+		//position, whether it is the player itself or another fish that follows it. to add to the end of the line of objects,
+		//the i+1 position needs to be used
+		
 		List<IntPoint> putWhere = new ArrayList<>(target.recentPositions);
 		for (int i=0; i < followers.size() && i+1 < putWhere.size(); i++) {
 			// Q5. What is the deal with the two conditions in this for-loop?
+			//this checks that i is smaller than the number of followers so that all followers are accounted for but the 
+			//loop still ends when there are no more followers
+			//the i+1 checks whether there is enough space in the putWhere array for the follower
 			// Conditions are in the "while" part of this loop.
 			
 			IntPoint past = putWhere.get(i+1);

@@ -98,8 +98,20 @@ public class FishGame {
 	 * @return true if the player has won (or maybe lost?).
 	 */
 	public boolean gameOver() {
-		// TODO(FishGrid) We want to bring the fish home before we win!
-		return missing.isEmpty();
+		
+		int x = player.getX();
+		int y = player.getY();
+		
+		int X1 = home.getX();
+		int Y1 = home.getY();
+		
+		if (x == X1 && y == Y1) {
+			return missing.isEmpty();
+		} else {
+			return false;
+			
+		}
+		
 	}
 
 	/**
@@ -131,6 +143,11 @@ public class FishGame {
 				missing.remove(justFound);
 				
 				// Increase score when you find a fish!
+				
+				if (justFound.color == 7) {
+					score +=5;
+				}
+				
 				score += 10;
 			}
 		}
@@ -163,7 +180,7 @@ public class FishGame {
 	}
 
 	/**
-	 * This gets a click on the grid. We want it to destroy rocks that ruin the game.
+	 * This gets a click on the grid. We want it to destroys that ruin the game.
 	 * @param x - the x-tile.
 	 * @param y - the y-tile.
 	 */
@@ -171,8 +188,13 @@ public class FishGame {
 		// TODO(FishGrid) use this print to debug your World.canSwim changes!
 		System.out.println("Clicked on: "+x+","+y+ " world.canSwim(player,...)="+world.canSwim(player, x, y));
 		List<WorldObject> atPoint = world.find(x, y);
-		// TODO(FishGrid) allow the user to click and remove rocks.
-
+		
+		//allows the user to click and remove rocks
+		if (atPoint.get(0) instanceof Rock) {
+			world.remove(atPoint.get(0));
+		}
+		
+		System.out.println(atPoint);
 	}
 	
 }
